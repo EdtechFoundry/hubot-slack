@@ -70,13 +70,13 @@ class SlackClient
   ###
   Send a message to Slack using the best client for the message type
   ###
-  send: (envelope, message) ->
+  send: (envelope, message, callback) ->
     message = @format.outgoing(message)
 
     if typeof message isnt 'string'
-      @web.chat.postMessage(envelope.room, message.text, _.defaults(message, {'as_user': true}))
+      @web.chat.postMessage(envelope.room, message.text, _.defaults(message, {'as_user': true}), callback)
     else
-      @rtm.sendMessage(message, envelope.room) # RTM behaves as though `as_user` is true already
+      @rtm.sendMessage(message, envelope.room, callback) # RTM behaves as though `as_user` is true already
 
 
 module.exports = SlackClient
