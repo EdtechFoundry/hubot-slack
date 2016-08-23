@@ -31,7 +31,8 @@ class SlackFormatter
             return "@#{user.name}"
 
         when '#'
-          if label then return label
+          # commented out label as it strips away links for channels
+          #if label then return label
           channel = @dataStore.getChannelById link
           if channel
             return "\##{channel.name}"
