@@ -28,9 +28,9 @@ describe 'links()', ->
     foo = @formatter.links 'foo <#C123> bar'
     foo.should.equal 'foo #general bar'
 
-  it 'Should change <#C123|label> links to label', ->
+  it 'Should NOT change <#C123|label> links to label, but to #general', ->
     foo = @formatter.links 'foo <#C123|label> bar'
-    foo.should.equal 'foo label bar'
+    foo.should.equal 'foo #general bar'
 
   it 'Should change <!everyone> links to @everyone', ->
     foo = @formatter.links 'foo <!everyone> bar'
