@@ -106,7 +106,7 @@ describe 'Receiving a team_join event', ->
       user.should.equal '1234'
       @hit = true
     @hit.should.equal false
-    @slackbot.emitFromRobot {type: 'team_join', user: '1234'}
+    @slackbot.teamJoin {type: 'team_join', user: '1234'}
     @hit.should.equal true
 
 describe 'Handling incoming messages', ->
