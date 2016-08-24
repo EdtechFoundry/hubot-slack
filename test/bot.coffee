@@ -99,6 +99,16 @@ describe 'Receiving an error event', ->
     @slackbot.error {msg: 'ohno', code: -2}
     @hit.should.equal true
 
+describe 'Receiving a team_join event', ->
+  it 'Should propagate that event', ->
+    @hit = false
+    @slackbot.robot.on 'team_join', (user) =>
+      user.should.equal '1234'
+      @hit = true
+    @hit.should.equal false
+    @slackbot.emitFromRobot {type: 'team_join', user: '1234'}
+    @hit.should.equal true
+
 describe 'Handling incoming messages', ->
   it 'Should handle regular messages as hoped and dreamed', ->
     @slackbot.message {text: 'foo', user: @stubs.user, channel: @stubs.channel}

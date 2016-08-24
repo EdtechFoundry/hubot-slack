@@ -21,10 +21,17 @@ class SlackBot extends Adapter
     @client.on 'error', @error
     @client.on 'message', @message
     @client.on 'authenticated', @authenticated
+    @client.on 'team_join', @emitFromRobot
 
     # Start logging in
     @client.connect()
 
+
+  ###
+  Function that forwards any received events to the robots emitter
+  ###
+  emitFromRobot: (event) =>
+    @robot.emit event.type, event.user
 
   ###
   Slack client has opened the connection
