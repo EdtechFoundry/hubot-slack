@@ -6,7 +6,9 @@
   "scripts": {
     "test": "npm run mocha && istanbul report text-summary lcov",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "mocha": "mocha --compilers coffee:coffee-script/register  --require coffee-coverage/register-istanbul --reporter spec test"
+    "mocha": "mocha --compilers coffee:coffee-script/register  --require coffee-coverage/register-istanbul --reporter spec test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "hubot",
@@ -25,7 +27,8 @@
   },
   "dependencies": {
     "@slack/client": "^3.4.0",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "hubot": "~2.11",
@@ -75,5 +78,6 @@
       "email": "jagan@slack-corp.com",
       "name": "John Agan"
     }
-  ]
+  ],
+  "snyk": true
 }
